@@ -54,7 +54,46 @@ static void Task_2()
 //Знайти номер мінімального елемента вектора a.
 static void Task_3() 
 {
+    int[,] matrix = new int[,] {
+            {21, -4, -1, 12, 7, 1}, {-5, 12, -7, 0, 33, -17}, {11, 4, -8, 25, -3, 6},
+            {9, 33, -5, -1, 17 ,-22}, {0,13,-6,3,-1,24}
+            };
+
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        {
+            Console.Write($"{matrix[i, j]}\t");
+        }
+        Console.WriteLine("\n");
+    }
+    int[] vector = new int[6] ;
+    for (int j = 0; j < matrix.GetLength(1); j++)
+    {
+        int max_number = matrix[0, j];
+        for (int i = 1; i < matrix.GetLength(0); i++)
+        {
+            max_number = matrix[i, j] < max_number ? max_number : matrix[i, j];
+        }
+        vector[j]=max_number;
+    }
+
+    Console.Write("Вектор максимальних елементів рядків матриці : ");
+    foreach (int i in vector)
+    {
+        Console.Write($"{i}  ");
+    }
+    int min_index = 0;
+    for (int i = 0; i < vector.Length; i++) 
+    {
+        if (vector[i] < min_index)
+        {
+            min_index=i;
+        }
+    }
+    Console.WriteLine($"\nНомер мінімального елемента вектора = {min_index +1}");
 
 }
 Task_1();
 Task_2();
+Task_3();
