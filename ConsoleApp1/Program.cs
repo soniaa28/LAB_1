@@ -33,7 +33,7 @@ static void Task_1()
 static void Task_2()
 
 {
-    Console.WriteLine("Введіть x,y,z через пробіл");
+    Console.WriteLine("Введіть x, y, z через пробіл");
     string[] numbers = Console.ReadLine().Split();
     int x = int.Parse(numbers[0]);
     int y = int.Parse(numbers[1]);
@@ -53,21 +53,35 @@ static void Task_2()
 //елементами якого є максимальні елементи рядків матриці C.
 //Знайти номер мінімального елемента вектора a.
 static void Task_3() 
+
 {
-    int[,] matrix = new int[,] {
+    int[,] matrix = new int[5, 6];
+    Random random = new Random();
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        {
+            matrix[i, j] = random.Next(-50, 50);
+        }
+       
+    }
+    /*int[,] matrix = new int[,] {
             {21, -4, -1, 12, 7, 1}, {-5, 12, -7, 0, 33, -17}, {11, 4, -8, 25, -3, 6},
             {9, 33, -5, -1, 17 ,-22}, {0,13,-6,3,-1,24}
             };
+    */
+
 
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
         for (int j = 0; j < matrix.GetLength(1); j++)
         {
-            Console.Write($"{matrix[i, j]}\t");
+            Console.Write(matrix[i, j] + "\t");
         }
         Console.WriteLine("\n");
     }
-    int[] vector = new int[6] ;
+
+    int[] vector = new int[matrix.GetLength(1)] ; //вектор для зберігання максимальних елементів 
     for (int j = 0; j < matrix.GetLength(1); j++)
     {
         int max_number = matrix[0, j];
@@ -83,17 +97,12 @@ static void Task_3()
     {
         Console.Write($"{i}  ");
     }
-    int min_index = 0;
-    for (int i = 0; i < vector.Length; i++) 
-    {
-        if (vector[i] < min_index)
-        {
-            min_index=i;
-        }
-    }
-    Console.WriteLine($"\nНомер мінімального елемента вектора = {min_index +1}");
+   
+    Console.WriteLine($"\nНомер мінімального елемента вектора = {Array.IndexOf(vector, vector.Min()) +1}");
 
 }
+
+//думаю 3 завдання легше і практичніше написати через List
 Task_1();
 Task_2();
 Task_3();
