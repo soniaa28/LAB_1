@@ -2,6 +2,7 @@
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 static void Task_1()
 {
+    
     Console.Write("Введіть натуральне число ");
     string n = Console.ReadLine();
     char[] ch = n.ToCharArray();
@@ -25,7 +26,7 @@ static void Task_1()
     }
     else
     {
-        Console.WriteLine(counter_even > counter_odd ? "більше парних цифр" : "більше непарних цифр");
+        Console.WriteLine(counter_even > counter_odd ? "У числі більше парних цифр" : "У числі більше непарних цифр");
     }
 }
 
@@ -33,18 +34,24 @@ static void Task_1()
 static void Task_2()
 
 {
-    Console.WriteLine("Введіть x, y, z через пробіл");
-    string[] numbers = Console.ReadLine().Split();
-    int x = int.Parse(numbers[0]);
-    int y = int.Parse(numbers[1]);
-    int z = int.Parse(numbers[2]);
+    /* Console.WriteLine("Введіть x, y, z через пробіл");
+     string[] numbers = Console.ReadLine().Split();
+     double x = double.Parse(numbers[0]);
+     double y = double.Parse(numbers[1]);
+     double z = double.Parse(numbers[2]);
+    */
+    Console.Write("Введіть x =");
+    double x = double.Parse(Console.ReadLine()) ;
+    Console.Write("Введіть y =");
+    double y = double.Parse(Console.ReadLine());
+    Console.Write("Введіть z =");
+    double z = double.Parse(Console.ReadLine());
 
-    double a = (x ^ 2 / 2) - (x ^ 4 / 24) + (x ^ 6 / 720);
-    double temp = x * Math.Cos(z) - z * Math.Cos(y) + y * Math.Cos(x);
+    double a = (x *x / 2) - (Math.Pow(x,4) / 24) + (Math.Pow(x,6)/ 720);
+    double temp = x * Math.Cos(z) - z * Math.Cos(y) + y * Math.Cos(x);//додаткова змінна, через повторення у виразах
     double b = Math.Sin(3 * Math.PI / 4) + temp;
     double c = 5 * temp;
-    double result = Math.Max(a, Math.Min(b, c));
-    Console.WriteLine("Відповідь = " + result);
+    Console.WriteLine("Відповідь = " + Math.Max(a, Math.Min(b, c)));
 
 
 }
@@ -61,7 +68,7 @@ static void Task_3()
     {
         for (int j = 0; j < matrix.GetLength(1); j++)
         {
-            matrix[i, j] = random.Next(-50, 50);
+            matrix[i, j] = random.Next(-20, 50);
         }
        
     }
@@ -81,15 +88,15 @@ static void Task_3()
         Console.WriteLine("\n");
     }
 
-    int[] vector = new int[matrix.GetLength(1)] ; //вектор для зберігання максимальних елементів 
-    for (int j = 0; j < matrix.GetLength(1); j++)
+    int[] vector = new int[matrix.GetLength(0)] ; //вектор для зберігання максимальних елементів 
+    for (int i = 0; i < matrix.GetLength(0); i++)
     {
-        int max_number = matrix[0, j];
-        for (int i = 1; i < matrix.GetLength(0); i++)
+        int max_number = matrix[i, 0];
+        for (int j = 1; j < matrix.GetLength(1); j++)
         {
             max_number = matrix[i, j] < max_number ? max_number : matrix[i, j];
         }
-        vector[j]=max_number;
+        vector[i]=max_number;
     }
 
     Console.Write("Вектор максимальних елементів рядків матриці : ");
@@ -102,7 +109,7 @@ static void Task_3()
 
 }
 
-//думаю 3 завдання легше і практичніше написати через List
+
 Task_1();
 Task_2();
 Task_3();
